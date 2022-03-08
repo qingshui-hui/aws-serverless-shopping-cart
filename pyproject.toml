@@ -10,10 +10,15 @@ cognitojwt = "^1.4.1"
 aws-lambda-powertools = "^1.25.2"
 boto3 = "^1.21.14"
 pytest = "^7.0.1"
-moto = "^3.0.6"
+pandas = "^1.4.1"
+moto = {extras = ["s3", "dynamodb", "dynamodbstreams", "lambda"], version = "^3.0.7"}
+autopep8 = "^1.6.0"
 
 [tool.poetry.dev-dependencies]
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
 build-backend = "poetry.core.masonry.api"
+
+[virtualenvs]
+path = ".venv"
