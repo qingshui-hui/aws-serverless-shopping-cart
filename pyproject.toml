@@ -9,6 +9,8 @@ python = "^3.8"
 cognitojwt = "^1.4.1"
 aws-lambda-powertools = "^1.25.2"
 boto3 = "^1.21.14"
+pytest = "^7.0.1"
+moto = "^3.0.6"
 
 [tool.poetry.dev-dependencies]
 
