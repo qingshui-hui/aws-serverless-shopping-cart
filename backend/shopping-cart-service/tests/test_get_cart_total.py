@@ -5,7 +5,7 @@ import boto3
 import pytest
 from moto import mock_dynamodb2, mock_lambda
 
-from mock import patch
+from unittest.mock import patch
 
 
 from tests.utils.logger import lambda_context

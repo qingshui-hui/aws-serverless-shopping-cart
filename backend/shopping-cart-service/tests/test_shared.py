@@ -2,7 +2,7 @@ import os
 
 import pytest
 import shared  # noqa: E402  # import from layer
-from mock import patch
+from unittest.mock import patch
 
 
 class Tests:
