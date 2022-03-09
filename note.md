@@ -48,3 +48,9 @@ Windows fatal exception: access violation
 https://github.com/pytest-dev/pytest/issues/7634#issuecomment-672863350
 pytestの代わりにpython -m pytestで実行するとそのエラーが表示されなくなる。
 オプションで -p no:faulthandlerを設定する方法もある。
+
+Metricsを使用している場合は次の2つの環境変数をセットする。
+set POWERTOOLS_SERVICE_NAME="Example"
+set POWERTOOLS_METRICS_NAMESPACE="Application"
+https://awslabs.github.io/aws-lambda-powertools-python/latest/core/metrics/#testing-your-code
+すると、validation errorは起こらなくなるが、UserWarningは起こることがあるため、無視するリストに加えてもよい。

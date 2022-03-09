@@ -1,12 +1,9 @@
-import sys
+import os
+
 import pytest
-
-sys.path.append("..")  # Add application to path
-sys.path.append("./layers/")  # Add layer to path
-
 import shared  # noqa: E402  # import from layer
 from mock import patch
-import os
+
 
 class Tests:
 
