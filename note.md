@@ -4,6 +4,9 @@
 https://code.visualstudio.com/docs/python/debugging
 特にDebugging specific app typesが参考になる。
 
+mock
+https://adamj.eu/tech/2020/10/13/how-to-mock-environment-variables-with-pythons-unittest/
+
 ## 環境構築
 windows
 https://github.com/coreybutler/nvm-windows

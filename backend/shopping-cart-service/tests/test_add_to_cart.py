@@ -1,10 +1,11 @@
 
 import json
 import os
+from unittest import mock
+from unittest.mock import patch
 
 import boto3
 import pytest
-from unittest.mock import patch
 from moto import mock_dynamodb2, mock_lambda
 
 from tests.utils.logger import lambda_context
@@ -47,10 +48,18 @@ if __name__ == "__main__":
 
 class TestGetCartTotal:
 
+    @classmethod
+    def setup_method(cls):
+        cls.env_patcher = mock.patch.dict(os.environ, {'TABLE_NAME': 'sample_table', 'PRODUCT_SERVICE_URL': 'http://example.com/test'})
+        cls.env_patcher.start()
+
+    @classmethod
+    def teardown_class(cls):
+        cls.env_patcher.stop()
+
     @mock_dynamodb2
     @mock_lambda
     @patch("utils.get_product_from_external_service", get_product_mock)
-    @patch.dict(os.environ, {'TABLE_NAME': 'sample_table', 'PRODUCT_SERVICE_URL': 'http://example.com/test'})
     def test_add_to_cart_handler(self, lambda_context):
         from add_to_cart import lambda_handler
 
