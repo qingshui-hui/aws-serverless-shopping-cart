@@ -1,6 +1,9 @@
 #
 [repo](https://github.com/aws-samples/aws-serverless-shopping-cart)
 
+https://code.visualstudio.com/docs/python/debugging
+特にDebugging specific app typesが参考になる。
+
 ## 環境構築
 windows
 https://github.com/coreybutler/nvm-windows
@@ -54,3 +57,6 @@ set POWERTOOLS_SERVICE_NAME="Example"
 set POWERTOOLS_METRICS_NAMESPACE="Application"
 https://awslabs.github.io/aws-lambda-powertools-python/latest/core/metrics/#testing-your-code
 すると、validation errorは起こらなくなるが、UserWarningは起こることがあるため、無視するリストに加えてもよい。
+
+coverage
+pytest --cov=shopping-cart-service
