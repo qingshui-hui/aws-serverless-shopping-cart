@@ -4,13 +4,10 @@ import os
 from unittest import mock
 from unittest.mock import patch
 
-import boto3
-import pytest
 from moto import mock_dynamodb2, mock_lambda
 
+from tests.mock_table import get_mock_table
 from tests.utils.logger import lambda_context
-
-from .mock_table import get_mock_table, sample_data
 
 
 def get_product_mock(product_id):
@@ -61,7 +58,7 @@ class TestGetCartTotal:
     @mock_lambda
     @patch("utils.get_product_from_external_service", get_product_mock)
     def test_add_to_cart_handler(self, lambda_context):
-        from add_to_cart import lambda_handler
+        import add_to_cart
 
         # prepare table
         mock_table = get_mock_table()
@@ -75,7 +72,7 @@ class TestGetCartTotal:
             },
         }
         # test lambda_handler
-        res = lambda_handler(event, lambda_context)
+        res = add_to_cart.lambda_handler(event, lambda_context)
         resBody = json.loads(res['body'])
         assert res["statusCode"] == 200
         assert resBody["message"] == "product added to cart"

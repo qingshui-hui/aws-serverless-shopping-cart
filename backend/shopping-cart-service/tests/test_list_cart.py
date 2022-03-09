@@ -18,13 +18,6 @@ with patch.dict(os.environ, {'TABLE_NAME': 'sample_table', 'PRODUCT_SERVICE_URL'
 
 class TestGetCartTotal:
 
-    @patch.dict(os.environ, {'TABLE_NAME': 'sample_table', 'PRODUCT_SERVICE_URL': 'http://example.com/test'})
-    @mock_dynamodb2
-    def setup_method(self, method):
-        import list_cart
-        self.lambda_handler = list_cart.lambda_handler
-        # prepare table
-
     @mock_dynamodb2
     @mock_lambda
     def test_create_empty_cart(self, lambda_context):
@@ -34,7 +27,7 @@ class TestGetCartTotal:
             },
         }
         # test lambda_handler
-        res = self.lambda_handler(event, lambda_context)
+        res = list_cart.lambda_handler(event, lambda_context)
         resBody = json.loads(res['body'])
         assert res["statusCode"] == 200
         assert resBody["products"] == []
