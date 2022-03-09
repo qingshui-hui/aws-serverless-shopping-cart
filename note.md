@@ -42,3 +42,9 @@ aws dynamodb list-tables
 set AWS_DEFAULT_PROFILE=saiki
 setx AWS_DEFAULT_PROFILE saiki
 ```
+
+## 記録
+Windows fatal exception: access violation
+https://github.com/pytest-dev/pytest/issues/7634#issuecomment-672863350
+pytestの代わりにpython -m pytestで実行するとそのエラーが表示されなくなる。
+オプションで -p no:faulthandlerを設定する方法もある。

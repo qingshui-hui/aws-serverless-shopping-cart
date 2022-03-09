@@ -39,6 +39,7 @@ def sample_data():
         })
     return items
 
+
 if __name__ == '__main__':
     # mock_table()
     sample_data()

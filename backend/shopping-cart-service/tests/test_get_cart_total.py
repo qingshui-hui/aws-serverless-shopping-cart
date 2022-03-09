@@ -10,7 +10,9 @@ from mock import patch
 
 sys.path.append("..")
 
-from .mock import get_mock_table, sample_data
+from tests.utils.logger import lambda_context
+
+from .mock_table import get_mock_table, sample_data
 
 
 class TestGetCartTotal:
@@ -34,9 +36,10 @@ class TestGetCartTotal:
 
     @mock_dynamodb2
     @mock_lambda
-    def test_handler(self):
-        with patch.dict(os.environ, {'TABLE_NAME': 'sample_table'}):
+    def test_handler(self, lambda_context):
+        with patch.dict(os.environ, {'TABLE_NAME': 'sample_table', 'PRODUCT_SERVICE_URL': 'http://example.com/test'}):
             from get_cart_total import lambda_handler
+        # prepare table
         mock_table = get_mock_table()
         mock_table.put_item(Item={
             "pk": "product#d2580eff-d105-45a5-9b21-ba61995bc6da",
@@ -48,10 +51,8 @@ class TestGetCartTotal:
                 "product_id": "d2580eff-d105-45a5-9b21-ba61995bc6da"
             }
         }
-        res = lambda_handler(event, Context())
-        print(res['body'])
+        # test lambda_handler
+        res = lambda_handler(event, lambda_context)
         parsedBody = json.loads(res['body'])
         assert parsedBody["product"] == "d2580eff-d105-45a5-9b21-ba61995bc6da"
 
-class Context:
-    pass
