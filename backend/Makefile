@@ -13,6 +13,9 @@ deploy:  # s3 bucket still needed for layer
 tests:
 	pytest -v
 
+cov:
+	pytest --cov --cov-branch
+
 delete:
 	@aws cloudformation delete-stack --stack-name $(STACKNAME)-$(TEMPLATE)
 	@echo "Waiting for stack $(STACKNAME)-$(TEMPLATE) to be deleted..."
