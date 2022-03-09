@@ -11,9 +11,16 @@ class Tests:
         headers = {
             "cookie": "cartId=example-cart-id"
         }
-        cartId, _ = shared.get_cart_id(headers)
-        print(cartId)
+        cartId, generated = shared.get_cart_id(headers)
+        assert generated == False
         assert cartId == "example-cart-id"
+
+    def test_get_generated_cart_id(self):
+        headers = {
+            "cookie": ""
+        }
+        cartId, generated = shared.get_cart_id(headers)
+        assert generated == True
 
     @patch.dict(os.environ, {
         "AWS_REGION": "ap-northeast-1", "USERPOOL_ID": "aaa"

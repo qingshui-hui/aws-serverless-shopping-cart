@@ -62,7 +62,7 @@ class TestGetCartTotal:
                 "quantity": 1,
             }),
             "headers": {
-                "cookie": "cardId=c94eee3d-475d-4753-8a99-7e24a9781ca1"
+                "cookie": "cartId=c94eee3d-475d-4753-8a99-7e24a9781ca1"
             },
         }
         # test lambda_handler
