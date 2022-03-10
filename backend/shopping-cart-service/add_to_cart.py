@@ -36,7 +36,7 @@ def lambda_handler(event, context):
     except KeyError:
         return {
             "statusCode": 400,
-            "headers": get_headers(),
+            "headers": get_headers(""),
             "body": json.dumps({"message": "No Request payload"}),
         }
     product_id = request_payload["productId"]
