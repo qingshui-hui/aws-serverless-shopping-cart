@@ -11,7 +11,13 @@ deploy:  # s3 bucket still needed for layer
 	@sam deploy --capabilities CAPABILITY_NAMED_IAM --stack-name $(STACKNAME)-$(TEMPLATE) --s3-bucket $(S3_BUCKET) --parameter-overrides AllowedOrigin=$(ORIGIN) --no-fail-on-empty-changeset
 
 tests:
-	py.test -v
+	pytest -v
+
+cov:
+	pytest --cov --cov-branch
+
+cov-html:
+	pytest --cov --cov-branch --cov-report=html
 
 delete:
 	@aws cloudformation delete-stack --stack-name $(STACKNAME)-$(TEMPLATE)
