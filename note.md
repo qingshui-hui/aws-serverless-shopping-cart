@@ -7,6 +7,9 @@ https://code.visualstudio.com/docs/python/debugging
 mock
 https://adamj.eu/tech/2020/10/13/how-to-mock-environment-variables-with-pythons-unittest/
 
+[aws-lambda-powertools](https://awslabs.github.io/aws-lambda-powertools-python/latest/)
+[pytest import](https://stackoverflow.com/questions/25827160/importing-correctly-with-pytest)
+
 ## 環境構築
 windows
 https://github.com/coreybutler/nvm-windows
@@ -63,3 +66,17 @@ https://awslabs.github.io/aws-lambda-powertools-python/latest/core/metrics/#test
 
 coverage
 pytest --cov=shopping-cart-service
+
+### Cognito
+API Gateway layerでログインのチェックを行うと、event["requestContext"]["authorizer"]["claims"]["sub"]に値が含まれる。
+backend\shopping-cart-service\checkout_cart.pyを参照する。
+
+> Because this method is authorized at API gateway layer, we don't need to validate the JWT claims here
+
+ログイン済みか自分でチェックするにはHeaderのAuthorizationの値をcognitojwt.decodeで問い合わせる。
+
+### Lambda Powertools Python
+CloudWatchで確認できるログやトレースなどを補助するツール
+Tracer  -> CloudWatch X-Rayのトレース
+Logger  -> CloudWatch ログ
+Metrics -> CloudWatch メトリクス
