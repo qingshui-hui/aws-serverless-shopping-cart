@@ -16,6 +16,9 @@ tests:
 cov:
 	pytest --cov --cov-branch
 
+cov-html:
+	pytest --cov --cov-branch --cov-report=html
+
 delete:
 	@aws cloudformation delete-stack --stack-name $(STACKNAME)-$(TEMPLATE)
 	@echo "Waiting for stack $(STACKNAME)-$(TEMPLATE) to be deleted..."
